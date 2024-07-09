@@ -1,6 +1,6 @@
 <?php
 // Koneksi Database
-$koneksi = mysqli_connect("localhost", "root", "", "Data_siswa");
+$koneksi = mysqli_connect("localhost", "root", "", "data_siswa");
 
 // Cek koneksi
 if (mysqli_connect_errno()) {
