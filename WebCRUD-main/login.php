@@ -84,18 +84,15 @@ if (isset($_POST['login'])) {
                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                               <input type="checkbox" class="btn-check" name="remember" id="remember" autocomplete="off">
                               <label class="btn btn-outline-primary" for="remember">Remember Me</label>
-
                          </div>
                          <button class="btn btn-primary text-uppercase" type="submit" name="login">Login</button>
                          <a href="registrasi.php" class="btn btn-danger text-uppercase"><i
                                    class="bi bi-pencil-square"></i>SIGN UP</a> |
-
+                         <a href="login_siswa.php" class="btn btn-warning text-uppercase">Login Siswa</a>
                     </form>
                </div>
           </div>
      </div>
-
-
 
      <!-- Bootstrap -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
