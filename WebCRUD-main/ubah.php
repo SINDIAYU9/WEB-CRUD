@@ -206,7 +206,7 @@ if (isset($_POST['ubah'])) {
      gsap.to('.ubah_data', {
           duration: 2,
           delay: 1,
-          text: '<i class="bi bi-pencil-square"></i>Ubah Data Siswa'
+          text: '<i class="bi bi-pencil-square"></i>Ubah Data Mahasiswa'
      })
      gsap.from('.navbar', {
           duration: 1,
