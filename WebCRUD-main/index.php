@@ -52,9 +52,6 @@ $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                          <li class="nav-item">
-                              <a class="nav-link" href="#about">About</a>
-                         </li>
-                         <li class="nav-item">
                               <a class="nav-link" href="logout.php">Logout</a>
                          </li>
                     </ul>
