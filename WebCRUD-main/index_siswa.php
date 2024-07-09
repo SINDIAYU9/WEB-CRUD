@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Jika tidak bisa login maka balik ke login_siswa.php
-if (!isset($_SESSION['siswa_login'])) {
+if (!isset($_SESSION['siswa_login']) || !isset($_SESSION['nim'])) {
     header('location:login_siswa.php');
     exit;
 }
@@ -31,6 +31,22 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <link rel="stylesheet" href="css/style.css">
 
     <title>Home Siswa</title>
+
+    <style>
+        .photo-container {
+            display: inline-block;
+            border: 2px solid #ffffff;
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #ffffff;
+        }
+
+        .photo-container img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body background="img/bg/bck.png">
@@ -54,39 +70,48 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <!-- Close Navbar -->
 
     <!-- Container -->
-    <div class="container">
-        <div class="row my-2">
-            <div class="col-md">
-                <h3 class="text-center fw-bold text-uppercase text-light data_siswa">Informasi Siswa</h3>
-                <hr>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-md">
-                <table class="table table-striped table-responsive table-hover text-center" style="width:100%">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Nama</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Umur</th>
-                            <th>Jurusan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-secondary text-dark">
-                            <td><?= $siswa['nama']; ?></td>
-                            <td><?= $siswa['jekel']; ?></td>
-                            <?php
-                            $now = time();
-                            $timeTahun = strtotime($siswa['tgl_Lahir']);
-                            $setahun = 31536000;
-                            $hitung = ($now - $timeTahun) / $setahun;
-                            ?>
-                            <td><?= floor($hitung); ?> Tahun</td>
-                            <td><?= $siswa['jurusan']; ?></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bg-dark text-white">
+                    <div class="card-header text-center">
+                        <h3 class="fw-bold text-uppercase">Profil Siswa</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <?php
+                        // Tentukan jalur gambar default jika tidak ada gambar
+                        $default_image = "img/foto/default.png";
+                        $image_path = "img/" . htmlspecialchars($siswa['gambar']);
+                        // Jika file gambar tidak ada, gunakan gambar default
+                        if (!file_exists($image_path) || empty($siswa['gambar'])) {
+                            $image_path = $default_image;
+                        }
+                        ?>
+                        <div class="photo-container">
+                            <img src="<?= $image_path; ?>" alt="Foto Siswa">
+                        </div>
+                        <h4><?= htmlspecialchars($siswa['nama']); ?></h4>
+                        <p><?= htmlspecialchars($siswa['nim']); ?></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Jenis Kelamin:</strong> <?= htmlspecialchars($siswa['jekel']); ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <?php
+                                $now = time();
+                                $timeTahun = strtotime($siswa['tgl_Lahir']);
+                                $setahun = 31536000;
+                                $hitung = ($now - $timeTahun) / $setahun;
+                                ?>
+                                <p><strong>Umur:</strong> <?= floor($hitung); ?> Tahun</p>
+                            </div>
+                            <div class="col-md-12">
+                                <p><strong>Jurusan:</strong> <?= htmlspecialchars($siswa['jurusan']); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
