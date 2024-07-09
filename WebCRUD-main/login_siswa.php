@@ -1,8 +1,8 @@
 <?php
 session_start();
-// Jika bisa login maka ke index.php
-if (isset($_SESSION['login'])) {
-    header('location:index.php');
+// Jika sudah login maka ke index_siswa.php
+if (isset($_SESSION['siswa_login'])) {
+    header('location:index_siswa.php');
     exit;
 }
 
@@ -11,36 +11,24 @@ require 'function.php';
 
 // jika tombol yang bernama login diklik
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    // password menggunakan md5
+    $nama = $_POST['nama'];
+    $nim = $_POST['nim'];
 
-    // mengambil data dari user dimana username yg diambil
-    $result = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+    // mengambil data dari siswa dimana nama dan nim yang diambil
+    $result = mysqli_query($koneksi, "SELECT * FROM siswa WHERE nama = '$nama' AND nim = '$nim'");
 
     $cek = mysqli_num_rows($result);
 
-    // jika $cek lebih dari 0, maka berhasil login dan masuk ke index.php
+    // jika $cek lebih dari 0, maka berhasil login dan masuk ke index_siswa.php
     if ($cek > 0) {
-        $_SESSION['login'] = true;
+        $_SESSION['siswa_login'] = true;
 
-        // cek remember me
-        if (isset($_POST['remember'])) {
-            // buat cookie dan acak cookie
-
-            setcookie('id', $row['id'], time() + 60);
-
-            // mengacak $row dengan algoritma 'sha256'
-            setcookie('key', hash('sha256', $row['username']), time() + 60);
-        }
-
-        header('location:index.php');
+        header('location:index_siswa.php');
         exit;
     }
     // jika $cek adalah 0 maka tampilkan error
     $error = true;  
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +47,7 @@ if (isset($_POST['login'])) {
      <!-- My CSS -->
      <link rel="stylesheet" href="css/login.css">
 
-     <title>Form Login</title>
+     <title>Login Siswa</title>
 </head>
 
 <body background="img/bg/bck.png">
@@ -67,35 +55,23 @@ if (isset($_POST['login'])) {
      <div class="container">
           <div class="row my-5">
                <div class="col-md-6 text-center login bg-dark">
-                    <h4 class="fw-bold" style="color: white;">Login Admin</h4>
+                    <h4 class="fw-bold" style="color: white;">Login Siswa</h4>
                     <!-- Ini Error jika tidak bisa login -->
                     <?php if (isset($error)) : ?>
-                    <?php echo '<script>alert("Username atau Password Salah!");</script>'; ?>
+                    <?php echo '<script>alert("Nama atau NIM Salah!");</script>'; ?>
                     <?php endif; ?>
                     <form action="" method="post">
                          <div class="form-group user">
-                              <input type="text" class="form-control w-50" placeholder="Masukkan Username"
-                                   name="username" autocomplete="off" required>
+                              <input type="text" class="form-control w-50" placeholder="Masukkan Nama" name="nama" autocomplete="off" required>
                          </div>
                          <div class="form-group my-5">
-                              <input type="password" class="form-control w-50" placeholder="Masukkan Password"
-                                   name="password" autocomplete="off" required>
-                         </div>
-                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                              <input type="checkbox" class="btn-check" name="remember" id="remember" autocomplete="off">
-                              <label class="btn btn-outline-primary" for="remember">Remember Me</label>
-
+                              <input type="text" class="form-control w-50" placeholder="Masukkan NIM" name="nim" autocomplete="off" required>
                          </div>
                          <button class="btn btn-primary text-uppercase" type="submit" name="login">Login</button>
-                         <a href="registrasi.php" class="btn btn-danger text-uppercase"><i
-                                   class="bi bi-pencil-square"></i>SIGN UP</a> |
-
                     </form>
                </div>
           </div>
      </div>
-
-
 
      <!-- Bootstrap -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
