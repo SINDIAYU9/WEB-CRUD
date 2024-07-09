@@ -214,7 +214,7 @@ $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
      gsap.to('.data_siswa', {
           duration: 1,
           delay: 0.6,
-          text: 'Data Siswa :)'
+          text: 'Data Mahasiswa Politeknik Gajah Tunggal'
      })
      gsap.from('.navbar', {
           duration: 1,
