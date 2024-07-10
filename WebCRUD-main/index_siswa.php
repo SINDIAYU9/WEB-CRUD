@@ -119,17 +119,20 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
 
     <!-- Footer -->
     <div class="container-fluid">
-        <div class="row bg-dark text-white text-center">
-            <div class="col my-2" id="politeknik gajah tunggal">
-                <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
-                <br><br><br>
-                <div>
-                    <a href="#" class="text-white">HOME</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Close Footer -->
+          <div class="row bg-dark text-white text-center">
+               <div class="col my-2" id="politeknik gajah tunggal">
+                    <br><br><br>
+                    <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
+
+                    <p>
+                         Pembuat :
+                         1. Sindi Ayu Lestari (2302054)
+                         2. Wilson Sitompul (2302057)
+                         3. Haiqal Abimanyu Sutono (2302028)
+                    </p>
+               </div>
+          </div>
+     </div>    <!-- Close Footer -->
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
