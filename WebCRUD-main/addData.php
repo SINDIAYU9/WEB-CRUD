@@ -123,9 +123,9 @@ if (isset($_POST['simpan'])) {
                               <select class="form-select w-50" id="jurusan" name="jurusan">
                                    <option disabled selected value>--------------------------------------------Pilih
                                         Jurusan--------------------------------------------</option>
-                                   <option value="Teknik Mesin">Teknik Mesin</option>
-                                   <option value="Teknik Elektronika">Teknik Elektronika</option>
-                                   <option value="Teknologi Industri">Teknologi Industri</option>
+                                   <option value="teknik mesin">Teknik Mesin</option>
+                                   <option value="teknik elektronika">Teknik Elektronika</option>
+                                   <option value="teknologi industri">Teknologi Industri</option>
                               </select>
                          </div>
                          <div class="mb-3">
