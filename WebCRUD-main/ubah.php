@@ -135,20 +135,12 @@ if (isset($_POST['ubah'])) {
                               <select class="form-select w-50" id="jurusan" name="jurusan">
                                    <option disabled selected value>--------------------------------------------Pilih
                                         Jurusan--------------------------------------------</option>
-                                   <option value="Teknik Listrik" <?php if ($siswa['jurusan'] == 'Teknik Listrik') { ?>
-                                        selected='' <?php } ?>>Teknik Listrik</option>
-                                   <option value="Teknik Komputer dan Jaringan"
-                                        <?php if ($siswa['jurusan'] == 'Teknik Komputer dan Jaringan') { ?> selected=''
-                                        <?php } ?>>Teknik Komputer dan Jaringan</option>
-                                   <option value="Multimedia" <?php if ($siswa['jurusan'] == 'Multimedia') { ?>
-                                        selected='' <?php } ?>>Multimedia</option>
-                                   <option value="Rekayasa Perangkat Lunak"
-                                        <?php if ($siswa['jurusan'] == 'Rekayasa Perangkat Lunak') { ?> selected=''
-                                        <?php } ?>>Rekayasa Perangkat Lunak</option>
-                                   <option value="Geomatika" <?php if ($siswa['jurusan'] == 'Geomatika') { ?>
-                                        selected='' <?php } ?>>Geomatika</option>
-                                   <option value="Mesin" <?php if ($siswa['jurusan'] == 'Mesin') { ?> selected=''
-                                        <?php } ?>>Mesin</option>
+                                   <option value="teknik mesin" <?php if ($siswa['jurusan'] == 'Teknik Mesin') { ?>
+                                        selected='' <?php } ?>>Teknik Mesin</option>
+                                   <option value="teknik elektronika" <?php if ($siswa['jurusan'] == 'Teknik Elektronika') { ?>
+                                        selected='' <?php } ?>>Teknink Elektronika</option>
+                                   <option value="teknologi Industri" <?php if ($siswa['jurusan'] == 'Teknologi Industri') { ?> selected=''
+                                        <?php } ?>>Teknologi Industri</option>
                               </select>
                          </div>
                          <div class="mb-3">
