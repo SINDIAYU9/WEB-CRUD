@@ -185,7 +185,7 @@ if (isset($_POST['simpan'])) {
      gsap.to('.Tambah_data', {
           duration: 2,
           delay: 1,
-          text: '<i class="bi bi-person-plus-fill"></i>Tambah Data Siswa :)'
+          text: '<i class="bi bi-person-plus-fill"></i>Tambah Data Mahasiswa'
      })
      gsap.from('.navbar', {
           duration: 1,
