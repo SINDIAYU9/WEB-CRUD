@@ -159,9 +159,9 @@ if (isset($_POST['simpan'])) {
      <!-- Footer -->
      <div class="container-fluid">
           <div class="row bg-dark text-white text-center">
-               <div class="col my-2" id="about">
+               <div class="col my-2" id="politeknik gajah tunggal">
                     <br><br><br>
-                    <h4 class="fw-bold text-uppercase">About</h4>
+                    <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
 
                     <p>
                          Pembuat:
