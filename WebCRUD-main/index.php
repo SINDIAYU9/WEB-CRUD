@@ -154,7 +154,7 @@ $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
                     <p>
                          Pembuat :
                          1. Sindi Ayu Lestari (2302054)
-                         2. Wilson Sitompul (2302057)
+                         2. Wilson Sitompul (2302056)
                          3. Haiqal Abimanyu Sutono (2302028)
                     </p>
                </div>

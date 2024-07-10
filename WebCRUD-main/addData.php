@@ -9,6 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 // Memanggil atau membutuhkan file function.php
 require 'function.php';
+include "koneksi.php";
 
 // Jika fungsi tambah lebih dari 0/data tersimpan, maka munculkan alert dibawah
 if (isset($_POST['simpan'])) {
@@ -88,7 +89,7 @@ if (isset($_POST['simpan'])) {
                          <div class="mb-3">
                               <label for="nim" class="form-label">NIM</label>
                               <input type="number" class="form-control w-50" id="nim" placeholder="Masukkan NIM" min="1"
-                                   name="NIM" autocomplete="off" required>
+                                   name="nim" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
                               <label for="nama" class="form-label">Nama</label>
@@ -123,9 +124,9 @@ if (isset($_POST['simpan'])) {
                               <select class="form-select w-50" id="jurusan" name="jurusan">
                                    <option disabled selected value>--------------------------------------------Pilih
                                         Jurusan--------------------------------------------</option>
-                                   <option value="teknik mesin">Teknik Mesin</option>
-                                   <option value="teknik elektronika">Teknik Elektronika</option>
-                                   <option value="teknologi industri">Teknologi Industri</option>
+                                   <option value="Teknik Mesin">Teknik Mesin</option>
+                                   <option value="Teknik Elektronika">Teknik Elektronika</option>
+                                   <option value="Teknik Industri">Teknologi Industri</option>
                               </select>
                          </div>
                          <div class="mb-3">
@@ -163,7 +164,7 @@ if (isset($_POST['simpan'])) {
                     <p>
                          Pembuat :
                          1. Sindi Ayu Lestari (2302054)
-                         2. Wilson Sitompul (2302057)
+                         2. Wilson Sitompul (2302056)
                          3. Haiqal Abimanyu Sutono (2302028)
                     </p>
                </div>

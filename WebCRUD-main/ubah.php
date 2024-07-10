@@ -135,11 +135,11 @@ if (isset($_POST['ubah'])) {
                               <select class="form-select w-50" id="jurusan" name="jurusan">
                                    <option disabled selected value>--------------------------------------------Pilih
                                         Jurusan--------------------------------------------</option>
-                                   <option value="teknik mesin" <?php if ($siswa['jurusan'] == 'Teknik Mesin') { ?>
+                                   <option value="Teknik Mesin" <?php if ($siswa['jurusan'] == 'Teknik Mesin') { ?>
                                         selected='' <?php } ?>>Teknik Mesin</option>
-                                   <option value="teknik elektronika" <?php if ($siswa['jurusan'] == 'Teknik Elektronika') { ?>
+                                   <option value="Teknik Elektronika" <?php if ($siswa['jurusan'] == 'Teknik Elektronika') { ?>
                                         selected='' <?php } ?>>Teknink Elektronika</option>
-                                   <option value="teknologi Industri" <?php if ($siswa['jurusan'] == 'Teknologi Industri') { ?> selected=''
+                                   <option value="Teknik Industri" <?php if ($siswa['jurusan'] == 'Teknologi Industri') { ?> selected=''
                                         <?php } ?>>Teknologi Industri</option>
                               </select>
                          </div>
