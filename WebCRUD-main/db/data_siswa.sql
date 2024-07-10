@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Mar 2022 pada 18.27
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 8.0.10
+-- Waktu pembuatan: 10 Jul 2024 pada 05.24
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,25 +28,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `siswa` (
-  `nis` varchar(50) NOT NULL,
+  `nim` varchar(50) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `tmpt_Lahir` varchar(50) NOT NULL,
   `tgl_Lahir` date NOT NULL,
   `jekel` enum('Laki - Laki','Perempuan') NOT NULL,
-  `jurusan` enum('Teknik Mesin','Teknik Elektronika','Tekinik Industri') NOT NULL,
+  `jurusan` enum('Teknik Mesin','Teknik Elektronika','Teknik Industri') NOT NULL,
   `email` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `siswa`
---
-
-INSERT INTO `siswa` (`nis`, `nama`, `tmpt_Lahir`, `tgl_Lahir`, `jekel`, `jurusan`, `email`, `gambar`, `alamat`) VALUES
-('1121', 'Farhan Ade Atalarik', 'Baturaja', '2003-08-27', 'Laki - Laki', 'Geomatika', 'fadeatalarik@gmail.com', '6241a9866640c.jpg', 'mars'),
-('1', 'f', 'a', '2022-03-22', 'Laki - Laki', 'Multimedia', 'aa@gmail.com', '6241b3ab2eb06.png', 'aa'),
-('11', 'WAW', 'BTA', '2022-04-05', 'Laki - Laki', '', 'A@Gmail.com', '6241d36de4efc.png', '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -58,14 +49,18 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, 'Admin', 'admin');
+(1, 'Admin', 'admin'),
+(2, 'wilson', '$2y$10$QcUjdbjKl3J1Q1Urqvh.leThXLnzu8RQYrfYDRuSokr43lhrq2V/a'),
+(3, '', '$2y$10$3KnCofScxTmmMmkoZVJ5i.Fj0H8t/3sCr.Wyw9MFuZSnNADMHDoh.'),
+(4, 'wilson sitompul', '$2y$10$rw528h7g6IGDrphAfwN7..GMit.uDy/aiB.OZTbnyiVZMqK7OAGky'),
+(5, 'po1', '$2y$10$pKd.YqvmmPuA/zXSKsHADOQvxDju33NLg0ctdluVE4hBhHncYF6Ia');
 
 --
 -- Indexes for dumped tables
@@ -85,7 +80,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
