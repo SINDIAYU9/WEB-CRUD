@@ -161,8 +161,10 @@ if (isset($_POST['simpan'])) {
                     <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
 
                     <p>
-                         Pembuat:
-                         1. Farhan Ade Atalarik (2135038)
+                         Pembuat :
+                         1. Sindi Ayu Lestari (2302054)
+                         2. Wilson Sitompul (2302057)
+                         3. Haiqal Abimanyu Sutono (2302028)
                     </p>
                </div>
           </div>
