@@ -8,31 +8,31 @@ if (isset($_SESSION['siswa_login'])) {
 
 // Memanggil atau membutuhkan file function.php
 require 'function.php';
+require 'koneksi.php';
 
 // Jika tombol login diklik
 if (isset($_POST['login'])) {
     $nama = $_POST['nama'];
     $nim = $_POST['nim'];
 
-    // Mengambil data siswa berdasarkan nim
-    $result = mysqli_query($koneksi, "SELECT * FROM siswa WHERE nim = '$nim'");
-    $row = mysqli_fetch_assoc($result);
-    $cek = mysqli_num_rows($result);
-
-    // Jika nim ditemukan dan password sesuai
-    if ($cek > 0 && $row['password'] == $password) {
+    // Mengambil data siswa berdasarkan nim dengan prepared statement
+    $stmt = $pdo->prepare("SELECT * FROM siswa WHERE nim = :nim");
+    $stmt->execute(['nim' => $nim]);
+    $row = $stmt->fetch();
+    
+    // Jika nim ditemukan
+    if ($row) {
         $_SESSION['siswa_login'] = true;
         $_SESSION['nim'] = $nim; // Simpan nim dalam session
 
         header('location:index_siswa.php');
         exit;
     } else {
-        // Jika nim atau password salah
+        // Jika nim salah
         $error = true;
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +73,7 @@ if (isset($_POST['login'])) {
                          <button class="btn btn-primary text-uppercase" type="submit" name="login">Login</button>
                     </form>
                     <br>
-                    <a href="login.php" class="btn btn-secondary text-uppercase">Login sebagai Admin</a>
+                    <a href="login.php" class="btn btn-secondary text-uppercase">Login Sebagai Admin</a>
                </div>
           </div>
      </div>

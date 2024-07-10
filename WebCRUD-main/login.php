@@ -8,17 +8,18 @@ if (isset($_SESSION['login'])) {
 
 // Memanggil atau membutuhkan file function.php
 require 'function.php';
+require 'koneksi.php'; // Tambahkan ini untuk menyertakan koneksi ke database
 
 // jika tombol yang bernama login diklik
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
-    // password menggunakan md5
+    $password = md5($_POST['password']); // password menggunakan md5
 
     // mengambil data dari user dimana username yg diambil
-    $result = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
-
-    $cek = mysqli_num_rows($result);
+    $stmt = $pdo->prepare("SELECT * FROM user WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $row = $stmt->fetch();
+    $cek = $stmt->rowCount();
 
     // jika $cek lebih dari 0, maka berhasil login dan masuk ke index.php
     if ($cek > 0) {
@@ -27,9 +28,7 @@ if (isset($_POST['login'])) {
         // cek remember me
         if (isset($_POST['remember'])) {
             // buat cookie dan acak cookie
-
             setcookie('id', $row['id'], time() + 60);
-
             // mengacak $row dengan algoritma 'sha256'
             setcookie('key', hash('sha256', $row['username']), time() + 60);
         }

@@ -1,10 +1,21 @@
 <?php
-// Koneksi Database
-$koneksi = mysqli_connect("localhost", "root", "", "data_siswa");
+$host = 'localhost';
+$db   = 'data_siswa';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
 
-// Cek koneksi
-if (mysqli_connect_errno()) {
-    echo "Koneksi database gagal: " . mysqli_connect_error();
-    exit();
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+     $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+     echo "Koneksi database gagal: " . $e->getMessage();
+     exit();
 }
 ?>
