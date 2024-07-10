@@ -11,23 +11,38 @@ if (!isset($_SESSION['login'])) {
 require 'function.php';
 include "koneksi.php";
 
-// Jika fungsi tambah lebih dari 0/data tersimpan, maka munculkan alert dibawah
+// Cek apakah tombol simpan sudah ditekan
 if (isset($_POST['simpan'])) {
-    if (tambah($_POST) > 0) {
+    $nim = $_POST['nim'];
+    
+    // Cek apakah NIM sudah ada di database
+    $query = "SELECT * FROM siswa WHERE nim = ?";
+    $stmt = $koneksi->prepare($query);
+    $stmt->bind_param("s", $nim);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        // Jika NIM sudah ada
         echo "<script>
-                alert('Data siswa berhasil ditambahkan!');
-                document.location.href = 'index.php';
+                alert('NIM telah digunakan!');
             </script>";
     } else {
-        // Jika fungsi tambah dari 0/data tidak tersimpan, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data siswa gagal ditambahkan!');
-            </script>";
+        // Jika NIM belum ada, tambahkan data baru
+        if (tambah($_POST) > 0) {
+            echo "<script>
+                    alert('Data siswa berhasil ditambahkan!');
+                    document.location.href = 'index.php';
+                </script>";
+        } else {
+            echo "<script>
+                    alert('Data siswa gagal ditambahkan!');
+                </script>";
+        }
     }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -178,22 +193,4 @@ if (isset($_POST['simpan'])) {
      </script>
 
      <!-- animasi  gsap-->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"> </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
-     <script>
-     gsap.registerPlugin(TextPlugin);
-     gsap.to('.Tambah_data', {
-          duration: 2,
-          delay: 1,
-          text: '<i class="bi bi-person-plus-fill"></i>Tambah Data Mahasiswa'
-     })
-     gsap.from('.navbar', {
-          duration: 1,
-          y: '-100%',
-          opacity: 0,
-          ease: 'bounce',
-     })
-     </script>
-</body>
-
-</html>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min
