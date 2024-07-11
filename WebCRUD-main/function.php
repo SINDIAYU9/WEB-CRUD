@@ -4,24 +4,19 @@ include "koneksi.php";
 // Membuat fungsi query dalam bentuk array
 function query($query)
 {
-    global $koneksi;
-    $result = mysqli_query($koneksi, $query);
-
-    if (!$result) {
-        die('Error: ' . mysqli_error($koneksi));
+    global $pdo;
+    try {
+        $stmt = $pdo->query($query);
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        die('Error: ' . $e->getMessage());
     }
-
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
 }
 
 // Membuat fungsi tambah
 function tambah($data)
 {
-    global $koneksi;
+    global $pdo;
     $nim = htmlspecialchars($data['nim']);
     $nama = htmlspecialchars($data['nama']);
     $tmpt_Lahir = htmlspecialchars($data['tmpt_Lahir']);
@@ -36,24 +31,27 @@ function tambah($data)
         return false;
     }
 
-    $sql = "INSERT INTO siswa VALUES ('$nim','$nama','$tmpt_Lahir','$tgl_Lahir','$jekel','$jurusan','$email','$gambar','$alamat')";
-    mysqli_query($koneksi, $sql);
+    $sql = "INSERT INTO siswa (nim, nama, tmpt_Lahir, tgl_Lahir, jekel, jurusan, email, gambar, alamat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nim, $nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat]);
 
-    return mysqli_affected_rows($koneksi);
+    return $stmt->rowCount();
 }
 
 // Membuat fungsi hapus
 function hapus($nim)
 {
-    global $koneksi;
-    mysqli_query($koneksi, "DELETE FROM siswa WHERE nim = '$nim'");
-    return mysqli_affected_rows($koneksi);
+    global $pdo;
+    $sql = "DELETE FROM siswa WHERE nim = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nim]);
+    return $stmt->rowCount();
 }
 
 // Membuat fungsi ubah
 function ubah($data)
 {
-    global $koneksi;
+    global $pdo;
     $nim = $data['nim'];
     $nama = htmlspecialchars($data['nama']);
     $tmpt_Lahir = htmlspecialchars($data['tmpt_Lahir']);
@@ -70,10 +68,11 @@ function ubah($data)
         $gambar = upload();
     }
 
-    $sql = "UPDATE siswa SET nama = '$nama', tmpt_Lahir = '$tmpt_Lahir', tgl_Lahir = '$tgl_Lahir', jekel = '$jekel', jurusan = '$jurusan', email = '$email', gambar = '$gambar', alamat = '$alamat' WHERE nim = '$nim'";
-    mysqli_query($koneksi, $sql);
+    $sql = "UPDATE siswa SET nama = ?, tmpt_Lahir = ?, tgl_Lahir = ?, jekel = ?, jurusan = ?, email = ?, gambar = ?, alamat = ? WHERE nim = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat, $nim]);
 
-    return mysqli_affected_rows($koneksi);
+    return $stmt->rowCount();
 }
 
 // Membuat fungsi upload gambar
@@ -115,13 +114,15 @@ function upload()
 // Membuat fungsi registrasi
 function registrasi($data)
 {
-    global $koneksi;
+    global $pdo;
     $username = strtolower(stripslashes($data["username"]));
-    $password = mysqli_real_escape_string($koneksi, $data["password"]);
-    $password2 = mysqli_real_escape_string($koneksi, $data["password2"]);
+    $password = $data["password"];
+    $password2 = $data["password2"];
 
-    $result = mysqli_query($koneksi, "SELECT username FROM user WHERE username = '$username'");
-    if (mysqli_fetch_assoc($result)) {
+    $stmt = $pdo->prepare("SELECT username FROM user WHERE username = ?");
+    $stmt->execute([$username]);
+
+    if ($stmt->fetch()) {
         echo "<script>alert('Username sudah terdaftar');</script>";
         return false;
     }
@@ -132,8 +133,10 @@ function registrasi($data)
     }
 
     $password = password_hash($password, PASSWORD_DEFAULT);
-    mysqli_query($koneksi, "INSERT INTO user VALUES('', '$username', '$password')");
+    $sql = "INSERT INTO user (username, password) VALUES (?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$username, $password]);
 
-    return mysqli_affected_rows($koneksi);
+    return $stmt->rowCount();
 }
 ?>

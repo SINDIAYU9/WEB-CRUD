@@ -7,8 +7,11 @@ if (isset($_POST['dataSiswa'])) {
     $output = '';
 
     // mengambil data siswa dari nim yang berasal dari dataSiswa
-    $sql = "SELECT * FROM siswa WHERE nim = '" . $_POST['dataSiswa'] . "'";
-    $result = mysqli_query($koneksi, $sql);
+    $nim = $_POST['dataSiswa'];
+    $sql = "SELECT * FROM siswa WHERE nim = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nim]);
+    $result = $stmt->fetchAll();
 
     $output .= '<div class="table-responsive">
                         <table class="table table-bordered">';
@@ -43,10 +46,10 @@ if (isset($_POST['dataSiswa'])) {
                         <tr>
                             <th width="40%">Alamat</th>
                             <td width="60%">' . $row['alamat'] . '</td>
-                        </tr>
-                        ';
+                        </tr>';
     }
     $output .= '</table></div>';
     // Tampilkan $output
     echo $output;
 }
+?>
