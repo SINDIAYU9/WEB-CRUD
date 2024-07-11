@@ -1,13 +1,12 @@
 <?php
 session_start();
 // Jika tidak bisa login maka balik ke login.php
-// jika masuk ke halaman ini melalui url, maka langsung menuju halaman login
 if (!isset($_SESSION['login'])) {
     header('location:login.php');
     exit;
 }
 
-// Memanggil atau membutuhkan file function.php
+// Memanggil atau membutuhkan file function.php dan koneksi.php
 require 'function.php';
 include "koneksi.php";
 
@@ -94,7 +93,7 @@ if (isset($_POST['simpan'])) {
      <div class="container">
           <div class="row my-2">
                <div class="col-md text-light">
-                    <h3 class="fw-bold text-uppercase Tambah_data"></h3>
+                    <h3 class="fw-bold text-uppercase">Tambah Data</h3>
                </div>
                <hr>
           </div>
@@ -119,7 +118,7 @@ if (isset($_POST['simpan'])) {
                          <div class="mb-3">
                               <label for="tgl_Lahir" class="form-label">Tanggal Lahir</label>
                               <input type="date" class="form-control w-50" id="tgl_Lahir" name="tgl_Lahir"
-                                   max="01-01-2006" required>
+                                   max="2006-01-01" required>
                          </div>
                          <div class="mb-3">
                               <label>Jenis Kelamin</label>
@@ -150,47 +149,72 @@ if (isset($_POST['simpan'])) {
                                    name="email" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
-                              <label for="gambar" class="form-label">Gambar</label>
-                              <input class="form-control form-control-sm w-50" id="gambar" name="gambar" type="file">
+                              <label for="telpon" class="form-label">No Telpon/WA</label>
+                              <input type="text" class="form-control w-50" id="telpon" placeholder="Masukkan No Telpon/WA"
+                                   name="telpon" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="ayah" class="form-label">Nama Ayah</label>
+                              <input type="text" class="form-control w-50" id="ayah" placeholder="Masukkan Nama Ayah"
+                                   name="ayah" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="ibu" class="form-label">Nama Ibu</label>
+                              <input type="text" class="form-control w-50" id="ibu" placeholder="Masukkan Nama Ibu"
+                                   name="ibu" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="nik" class="form-label">NIK</label>
+                              <input type="text" class="form-control w-50" id="nik" placeholder="Masukkan NIK"
+                                   name="nik" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="kelas" class="form-label">Kelas</label>
+                              <input type="text" class="form-control w-50" id="kelas" placeholder="Masukkan Kelas"
+                                   name="kelas" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
+                              <input type="number" class="form-control w-50" id="tahun_masuk" placeholder="Masukkan Tahun Masuk"
+                                   name="tahun_masuk" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="gambar" class="form-label">Upload Gambar</label>
+                              <input class="form-control w-50" type="file" id="gambar" name="gambar" accept="image/*">
                          </div>
                          <div class="mb-3">
                               <label for="alamat" class="form-label">Alamat</label>
-                              <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
+                              <textarea class="form-control w-50" id="alamat" name="alamat" rows="3"
                                    placeholder="Masukkan Alamat" autocomplete="off" required></textarea>
                          </div>
                          <hr>
                          <a href="index.php" class="btn btn-secondary">Kembali</a>
-                         <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                         <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                     </form>
                </div>
           </div>
      </div>
      <!-- Close Container -->
 
-
-
      <!-- Footer -->
-     <div class="container-fluid">
-          <div class="row bg-dark text-white text-center">
-               <div class="col my-2" id="politeknik gajah tunggal">
-                    <br><br><br>
-                    <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
-
-                    <p>
-                         Pembuat :
-                         1. Sindi Ayu Lestari (2302054)
-                         2. Wilson Sitompul (2302056)
-                         3. Haiqal Abimanyu Sutono (2302028)
-                    </p>
-               </div>
-          </div>
-     </div>
+     <footer class="bg-dark text-light text-center p-3">
+          <p class="mb-0">&copy; 2024 - Wilson Sitompul</p>
+     </footer>
      <!-- Close Footer -->
 
-     <!-- Bootstrap -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-     </script>
+     <!-- JavaScript Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+          integrity="sha384-IQsoLXlRIKNh4y3hKAJp5mCd5rT9eQZR0cjwXnE2Qa2hv30K8AfHUMN9Jpcp6F1K"
+          crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+          integrity="sha384-pzjw8f+ua7Kw1TIqQUq6z+8ABT4EpPbtt4ScU7YlHf5F5W5Sv3H0BV2ynh8/z92p"
+          crossorigin="anonymous"></script>
 
-     <!-- animasi  gsap-->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min
+     <!-- AOS -->
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script>
+     AOS.init();
+     </script>
+</body>
+
+</html>
