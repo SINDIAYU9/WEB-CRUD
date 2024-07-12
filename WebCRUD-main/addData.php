@@ -63,7 +63,7 @@ if (isset($_POST['simpan'])) {
      <!-- My CSS -->
      <link rel="stylesheet" href="css/style.css">
 
-     <title>Tambah Data</title>
+     <title>Tambah Data Mahasiswa</title>
 </head>
 
 <body background="img/bg/bck.png">
@@ -93,7 +93,7 @@ if (isset($_POST['simpan'])) {
      <div class="container">
           <div class="row my-2">
                <div class="col-md text-light">
-                    <h3 class="fw-bold text-uppercase">Tambah Data</h3>
+                    <h3 class="fw-bold text-uppercase">Tambah Data Mahasiswa</h3>
                </div>
                <hr>
           </div>
@@ -198,7 +198,11 @@ if (isset($_POST['simpan'])) {
 
      <!-- Footer -->
      <footer class="bg-dark text-light text-center p-3">
-          <p class="mb-0">&copy; 2024 - Wilson Sitompul</p>
+          <p class="mb-0">Pembuat :
+                         1. Sindi Ayu Lestari (2302054)
+                         2. Wilson Sitompul (2302056)
+                         3. Haiqal Abimanyu Sutono (2302028)
+                    </p>
      </footer>
      <!-- Close Footer -->
 

@@ -175,7 +175,9 @@ if (isset($_POST['ubah'])) {
 
                     <p>
                          Pembuat:
-                         1. Farhan Ade Atalarik (2135038)
+                         1. Sindi Ayu Lestari (2302054)
+                         2. Wilson Sitompul (2302056)
+                         3. Haiqal Abimanyu Sutono (2302028)
                     </p>
                </div>
           </div>
