@@ -53,7 +53,7 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
         <div class="container">
-            <a class="navbar-brand" href="index_siswa.php">Sistem Informasi Data Siswa</a>
+            <a class="navbar-brand" href="index_siswa.php">Sistem Informasi Data Mahasiswa</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -75,7 +75,7 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
             <div class="col-md-8">
                 <div class="card bg-dark text-white">
                     <div class="card-header text-center">
-                        <h3 class="fw-bold text-uppercase">Profil Siswa</h3>
+                        <h3 class="fw-bold text-uppercase">Profil Mahasiswa</h3>
                     </div>
                     <div class="card-body text-center">
                         <?php

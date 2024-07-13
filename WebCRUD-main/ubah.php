@@ -61,7 +61,7 @@ if (isset($_POST['ubah'])) {
      <!-- Navbar -->
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
           <div class="container">
-               <a class="navbar-brand" href="index.php">Sistem Admin Data Siswa</a>
+               <a class="navbar-brand" href="index.php">Sistem Admin Data Mahasiswa</a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -70,9 +70,6 @@ if (isset($_POST['ubah'])) {
                     <ul class="navbar-nav ms-auto">
                          <li class="nav-item">
                               <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link" href="#about">About</a>
                          </li>
                          <li class="nav-item">
                               <a class="nav-link" href="logout.php">Logout</a>
@@ -178,7 +175,9 @@ if (isset($_POST['ubah'])) {
 
                     <p>
                          Pembuat:
-                         1. Farhan Ade Atalarik (2135038)
+                         1. Sindi Ayu Lestari (2302054)
+                         2. Wilson Sitompul (2302056)
+                         3. Haiqal Abimanyu Sutono (2302028)
                     </p>
                </div>
           </div>
