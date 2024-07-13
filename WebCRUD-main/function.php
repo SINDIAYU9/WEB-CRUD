@@ -26,14 +26,20 @@ function tambah($data)
     $email = htmlspecialchars($data['email']);
     $gambar = upload();
     $alamat = htmlspecialchars($data['alamat']);
+    $telpon = htmlspecialchars($data['telpon']);
+    $ayah = htmlspecialchars($data['ayah']);
+    $ibu = htmlspecialchars($data['ibu']);
+    $nik = htmlspecialchars($data['nik']);
+    $kelas = htmlspecialchars($data['kelas']);
+    $tahun_masuk = htmlspecialchars($data['tahun_masuk']);
 
     if (!$gambar) {
         return false;
     }
 
-    $sql = "INSERT INTO siswa (nim, nama, tmpt_Lahir, tgl_Lahir, jekel, jurusan, email, gambar, alamat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO siswa (nim, nama, tmpt_Lahir, tgl_Lahir, jekel, jurusan, email, gambar, alamat, telpon, ayah, ibu, nik, kelas, tahun_masuk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nim, $nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat]);
+    $stmt->execute([$nim, $nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat, $telpon, $ayah, $ibu, $nik, $kelas, $tahun_masuk]);
 
     return $stmt->rowCount();
 }
@@ -61,6 +67,12 @@ function ubah($data)
     $email = htmlspecialchars($data['email']);
     $alamat = htmlspecialchars($data['alamat']);
     $gambarLama = $data['gambarLama'];
+    $telpon = htmlspecialchars($data['telpon']);
+    $ayah = htmlspecialchars($data['ayah']);
+    $ibu = htmlspecialchars($data['ibu']);
+    $nik = htmlspecialchars($data['nik']);
+    $kelas = htmlspecialchars($data['kelas']);
+    $tahun_masuk = htmlspecialchars($data['tahun_masuk']);
 
     if ($_FILES['gambar']['error'] === 4) {
         $gambar = $gambarLama;
@@ -68,9 +80,9 @@ function ubah($data)
         $gambar = upload();
     }
 
-    $sql = "UPDATE siswa SET nama = ?, tmpt_Lahir = ?, tgl_Lahir = ?, jekel = ?, jurusan = ?, email = ?, gambar = ?, alamat = ? WHERE nim = ?";
+    $sql = "UPDATE siswa SET nama = ?, tmpt_Lahir = ?, tgl_Lahir = ?, jekel = ?, jurusan = ?, email = ?, gambar = ?, alamat = ?, telpon = ?, ayah = ?, ibu = ?, nik = ?, kelas = ?, tahun_masuk = ? WHERE nim = ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat, $nim]);
+    $stmt->execute([$nama, $tmpt_Lahir, $tgl_Lahir, $jekel, $jurusan, $email, $gambar, $alamat, $telpon, $ayah, $ibu, $nik, $kelas, $tahun_masuk, $nim]);
 
     return $stmt->rowCount();
 }

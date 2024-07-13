@@ -16,12 +16,11 @@ if (isset($_POST['simpan'])) {
     
     // Cek apakah NIM sudah ada di database
     $query = "SELECT * FROM siswa WHERE nim = ?";
-    $stmt = $koneksi->prepare($query);
-    $stmt->bind_param("s", $nim);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$nim]);
+    $result = $stmt->fetch();
     
-    if ($result->num_rows > 0) {
+    if ($result) {
         // Jika NIM sudah ada
         echo "<script>
                 alert('NIM telah digunakan!');
@@ -118,9 +117,10 @@ if (isset($_POST['simpan'])) {
                          <div class="mb-3">
                               <label for="tgl_Lahir" class="form-label">Tanggal Lahir</label>
                               <input type="date" class="form-control w-50" id="tgl_Lahir" name="tgl_Lahir"
-                                   max="2006-01-01" required>
+                                   autocomplete="off" required>
                          </div>
                          <div class="mb-3">
+                              <label for="jekel" class="form-label">Jenis Kelamin</label>
                               <label>Jenis Kelamin</label>
                               <div class="form-check">
                                    <input class="form-check-input" type="radio" name="jekel" id="Laki - Laki"
@@ -135,23 +135,23 @@ if (isset($_POST['simpan'])) {
                          </div>
                          <div class="mb-3">
                               <label for="jurusan" class="form-label">Jurusan</label>
-                              <select class="form-select w-50" id="jurusan" name="jurusan">
-                                   <option disabled selected value>--------------------------------------------Pilih
-                                        Jurusan--------------------------------------------</option>
+                              <select class="form-select w-50" id="jurusan" name="jurusan" required>
+                              <option disabled selected value>--------------------------------------------Pilih
+                              Jurusan--------------------------------------------</option>
                                    <option value="Teknik Mesin">Teknik Mesin</option>
                                    <option value="Teknik Elektronika">Teknik Elektronika</option>
-                                   <option value="Teknik Industri">Teknologi Industri</option>
+                                   <option value="Teknologi Industri">Teknologi Industri</option>
                               </select>
                          </div>
                          <div class="mb-3">
-                              <label for="email" class="form-label">E-Mail</label>
-                              <input type="email" class="form-control w-50" id="email" placeholder="Masukkan E-Mail"
+                              <label for="email" class="form-label">Email</label>
+                              <input type="email" class="form-control w-50" id="email" placeholder="Masukkan Email"
                                    name="email" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
-                              <label for="telpon" class="form-label">No Telpon/WA</label>
-                              <input type="text" class="form-control w-50" id="telpon" placeholder="Masukkan No Telpon/WA"
-                                   name="telpon" autocomplete="off" required>
+                              <label for="telpon" class="form-label">Nomor Telepon</label>
+                              <input type="tel" class="form-control w-50" id="telpon"
+                                   placeholder="Masukkan Nomor Telepon" name="telpon" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
                               <label for="ayah" class="form-label">Nama Ayah</label>
@@ -165,7 +165,7 @@ if (isset($_POST['simpan'])) {
                          </div>
                          <div class="mb-3">
                               <label for="nik" class="form-label">NIK</label>
-                              <input type="text" class="form-control w-50" id="nik" placeholder="Masukkan NIK"
+                              <input type="number" class="form-control w-50" id="nik" placeholder="Masukkan NIK" min="1"
                                    name="nik" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
@@ -175,45 +175,40 @@ if (isset($_POST['simpan'])) {
                          </div>
                          <div class="mb-3">
                               <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
-                              <input type="number" class="form-control w-50" id="tahun_masuk" placeholder="Masukkan Tahun Masuk"
-                                   name="tahun_masuk" autocomplete="off" required>
+                              <input type="number" class="form-control w-50" id="tahun_masuk"
+                                   placeholder="Masukkan Tahun Masuk" min="1" name="tahun_masuk" autocomplete="off"
+                                   required>
                          </div>
                          <div class="mb-3">
-                              <label for="gambar" class="form-label">Upload Gambar</label>
-                              <input class="form-control w-50" type="file" id="gambar" name="gambar" accept="image/*">
+                              <label for="gambar" class="form-label">Foto Siswa</label>
+                              <input class="form-control w-50" type="file" id="gambar" name="gambar">
                          </div>
                          <div class="mb-3">
                               <label for="alamat" class="form-label">Alamat</label>
-                              <textarea class="form-control w-50" id="alamat" name="alamat" rows="3"
+                              <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
                                    placeholder="Masukkan Alamat" autocomplete="off" required></textarea>
                          </div>
-                         <hr>
-                         <a href="index.php" class="btn btn-secondary">Kembali</a>
-                         <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                         <button type="submit" name="simpan" class="btn btn-primary">Simpan Data</button>
+                         <a href="index.php" class="btn btn-danger">Kembali</a>
                     </form>
                </div>
           </div>
      </div>
      <!-- Close Container -->
 
-     <!-- Footer -->
-     <footer class="bg-dark text-light text-center p-3">
-          <p class="mb-0">&copy; 2024 - Wilson Sitompul</p>
-     </footer>
-     <!-- Close Footer -->
+     <!-- Optional JavaScript; choose one of the two! -->
 
-     <!-- JavaScript Bundle with Popper -->
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-          integrity="sha384-IQsoLXlRIKNh4y3hKAJp5mCd5rT9eQZR0cjwXnE2Qa2hv30K8AfHUMN9Jpcp6F1K"
-          crossorigin="anonymous"></script>
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+          integrity="sha384-KsvtA1q0gDKWPTnD5ZHblGJJK5jyl16gXQq4DyD0f5rxUjIjyyHqZV8zjo0BXihp" crossorigin="anonymous">
+     </script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
-          integrity="sha384-pzjw8f+ua7Kw1TIqQUq6z+8ABT4EpPbtt4ScU7YlHf5F5W5Sv3H0BV2ynh8/z92p"
-          crossorigin="anonymous"></script>
-
-     <!-- AOS -->
+          integrity="sha384-pzjw8f+ua7Kw1TIqU88mLKh8GJuxX2cQI5L+EqQlXQnK0ybgvnP+0bW0R4yJG8Si" crossorigin="anonymous">
+     </script>
+     <!-- animasi Js Aos -->
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
      <script>
-     AOS.init();
+          AOS.init();
      </script>
 </body>
 
