@@ -33,7 +33,7 @@ CREATE TABLE `siswa` (
   `tmpt_Lahir` varchar(50) NOT NULL,
   `tgl_Lahir` date NOT NULL,
   `jekel` enum('Laki - Laki','Perempuan') NOT NULL,
-  `jurusan` enum('Teknik Mesin','Teknik Elektronika','Teknik Industri') NOT NULL,
+  `jurusan` enum('Teknik Mesin','Teknik Elektronika','Teknologi Industri') NOT NULL,
   `email` varchar(255) NOT NULL,
   `telpon` varchar(20) NOT NULL,
   `ayah` varchar(255) NOT NULL,
