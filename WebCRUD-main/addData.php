@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 // Jika tidak bisa login maka balik ke login.php
 if (!isset($_SESSION['login'])) {
@@ -188,8 +192,8 @@ if (isset($_POST['simpan'])) {
                               <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
                                    placeholder="Masukkan Alamat" autocomplete="off" required></textarea>
                          </div>
-                         <button type="submit" name="simpan" class="btn btn-primary">Simpan Data</button>
                          <a href="index.php" class="btn btn-danger">Kembali</a>
+                         <button type="submit" name="simpan" class="btn btn-primary">Simpan Data</button>
                     </form>
                </div>
           </div>
