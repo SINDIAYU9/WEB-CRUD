@@ -17,7 +17,7 @@ if (isset($_POST['dataSiswa'])) {
                     <table class="table table-bordered">';
     foreach ($result as $row) {
         $output .= '<tr align="center">
-                        <td colspan="2"><img src="img/' . $row['gambar'] . '" width="50%"></td>
+                        <td colspan="2"><img src="img/' . $row['gambar'] . '" width="25%"></td>
                     </tr>
                     <tr>
                         <th width="40%">NIM</th>
