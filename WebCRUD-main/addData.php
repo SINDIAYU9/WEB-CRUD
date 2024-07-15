@@ -179,9 +179,15 @@ if (isset($_POST['simpan'])) {
                          </div>
                          <div class="mb-3">
                               <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
-                              <input type="number" class="form-control w-50" id="tahun_masuk"
-                                   placeholder="Masukkan Tahun Masuk" min="1" name="tahun_masuk" autocomplete="off"
-                                   required>
+                              <select class="form-select w-50" id="tahun_masuk" name="tahun_masuk" required>
+                                   <?php
+                                   $start_year = 1995;
+                                   $current_year = date("Y");
+                                   for ($year = $start_year; $year <= $current_year; $year++) {
+                                       echo "<option value=\"$year\">$year</option>";
+                                   }
+                                   ?>
+                              </select>
                          </div>
                          <div class="mb-3">
                               <label for="gambar" class="form-label">Foto Siswa</label>
