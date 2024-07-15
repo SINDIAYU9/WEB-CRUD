@@ -33,6 +33,19 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <title>Home Siswa</title>
 
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url('img/bg/bck.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            flex: 1;
+        }
+
         .photo-container {
             display: inline-block;
             border: 2px solid #ffffff;
@@ -46,10 +59,26 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
             height: 200px;
             object-fit: cover;
         }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
     </style>
 </head>
 
-<body background="img/bg/bck.png">
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
         <div class="container">
@@ -70,7 +99,7 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <!-- Close Navbar -->
 
     <!-- Container -->
-    <div class="container mt-5">
+    <div class="container content mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card bg-dark text-white">
@@ -118,21 +147,16 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <!-- Close Container -->
 
     <!-- Footer -->
-    <div class="container-fluid">
-          <div class="row bg-dark text-white text-center">
-               <div class="col my-2" id="politeknik gajah tunggal">
-                    <br><br><br>
-                    <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
-
-                    <p>
-                         Pembuat :
-                         1. Sindi Ayu Lestari (2302054)
-                         2. Wilson Sitompul (2302057)
-                         3. Haiqal Abimanyu Sutono (2302028)
-                    </p>
-               </div>
-          </div>
-     </div>    <!-- Close Footer -->
+    <div class="footer">
+        <h5 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h5>
+        <p>
+            Pembuat :
+            1. Sindi Ayu Lestari (2302054)
+            2. Wilson Sitompul (2302056)
+            3. Haiqal Abimanyu Sutono (2302028)
+        </p>
+    </div>
+    <!-- Close Footer -->
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
