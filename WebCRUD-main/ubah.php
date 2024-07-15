@@ -181,11 +181,12 @@ if (isset($_POST['ubah'])) {
                          <div class="mb-3">
                               <label for="gambar" class="form-label">Gambar</label>
                               <input class="form-control form-control-sm w-50" id="gambar" name="gambar" type="file">
-                              <img src="img/<?= $siswa['gambar']; ?>" alt="gambar" class="img-thumbnail mt-2 w-50">
+                              <img src="img/<?= $siswa['gambar']; ?>" alt="gambar" class="img-thumbnail mt-2 w-25">
+
                          </div>
                          <div class="col-md">
-                              <button class="btn btn-primary" type="submit" name="ubah">Update</button>
-                              <a href="index.php" class="btn btn-secondary">Cancel</a>
+                         <a href="index.php" class="btn btn-secondary">Cancel</a>    
+                         <button class="btn btn-primary" type="submit" name="ubah">Update</button>
                          </div>
                     </form>
                </div>
