@@ -5,7 +5,8 @@ require 'function.php';
 if (isset($_POST["register"])) {
     if (registrasi($_POST) > 0) {
         echo " <script>
-            alert('user baru berhasil ditambahkan');
+            alert('User baru berhasil ditambahkan');
+            window.location.href = 'login.php';
         </script> ";
     } else {
         echo mysqli_error($koneksi);
@@ -30,7 +31,7 @@ if (isset($_POST["register"])) {
      <!-- My CSS -->
      <link rel="stylesheet" href="css/login.css">
 
-     <title>From register</title>
+     <title>Form Register</title>
 </head>
 
 <body background="img/bg/bck.png">
@@ -38,42 +39,36 @@ if (isset($_POST["register"])) {
      <div class="container">
           <div class="row my-5">
                <div class="col-md-6 text-center login bg-dark">
-                    <h4 class="fw-bold" style="color: white;">register</h4>
+                    <h4 class="fw-bold" style="color: white;">Register</h4>
                     <form action="" method="post">
                          <div class="form-group my-3">
-                              <label for="username" class="text-light">username :</label>
+                              <label for="username" class="text-light">Username:</label>
                               <input type="text" class="form-control w-50" name="username" id="username"
-                                   autocomplete="off">
+                                   autocomplete="off" required>
                          </div>
                          <div class="form-group my-3">
-                              <label for="username" class="text-light">Password :</label>
+                              <label for="password" class="text-light">Password:</label>
                               <input type="password" class="form-control w-50" name="password" id="password"
-                                   autocomplete="off">
+                                   autocomplete="off" required>
                          </div>
                          <div class="form-group my-3">
-                              <label for="username" class="text-light"> Konfirmasi Password :</label>
+                              <label for="password2" class="text-light">Konfirmasi Password:</label>
                               <input type="password" class="form-control w-50" name="password2" id="password2"
-                                   autocomplete="off">
+                                   autocomplete="off" required>
                          </div>
                          <button class="btn btn-info btn-sm text-uppercase text-light" style="font-weight: 600;"
-                              type="submit" name="register">REGISTER</button>|
+                              type="submit" name="register">REGISTER</button> |
                          <a href="login.php" class="btn btn-info btn-sm text-light" style="font-weight: 600;"><i
                                    class="bi bi-pencil-square"></i>LOGIN</a> |
-
                     </form>
                </div>
           </div>
      </div>
 
-
-
      <!-- Bootstrap -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
      </script>
-</body>
-
-</html>
 </body>
 
 </html>
