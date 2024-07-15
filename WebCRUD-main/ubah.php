@@ -1,7 +1,6 @@
 <?php
 session_start();
 // Jika tidak bisa login maka balik ke login.php
-// jika masuk ke halaman ini melalui url, maka langsung menuju halaman login
 if (!isset($_SESSION['login'])) {
     header('location:login.php');
     exit;
@@ -30,9 +29,8 @@ if (isset($_POST['ubah'])) {
             </script>";
     }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -146,65 +144,64 @@ if (isset($_POST['ubah'])) {
                                    name="email" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
-                              <label for="gambar" class="form-label">Gambar <i>(Saat ini)</i></label> <br>
-                              <img src="img/<?= $siswa['gambar']; ?>" width="50%" style="margin-bottom: 10px;">
-                              <input class="form-control form-control-sm w-50" id="gambar" name="gambar" type="file">
+                              <label for="telpon" class="form-label">Nomor Telepon</label>
+                              <input type="tel" class="form-control w-50" id="telpon"
+                                   value="<?= $siswa['telpon']; ?>" name="telpon" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="ayah" class="form-label">Nama Ayah</label>
+                              <input type="text" class="form-control w-50" id="ayah"
+                                   value="<?= $siswa['ayah']; ?>" name="ayah" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="ibu" class="form-label">Nama Ibu</label>
+                              <input type="text" class="form-control w-50" id="ibu"
+                                   value="<?= $siswa['ibu']; ?>" name="ibu" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="nik" class="form-label">NIK</label>
+                              <input type="number" class="form-control w-50" id="nik"
+                                   value="<?= $siswa['nik']; ?>" name="nik" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="kelas" class="form-label">Kelas</label>
+                              <input type="text" class="form-control w-50" id="kelas"
+                                   value="<?= $siswa['kelas']; ?>" name="kelas" autocomplete="off" required>
+                         </div>
+                         <div class="mb-3">
+                              <label for="tahun_masuk" class="form-label">Angkatan</label>
+                              <input type="number" class="form-control w-50" id="tahun_masuk"
+                                   value="<?= $siswa['tahun_masuk']; ?>" name="tahun_masuk" autocomplete="off" required>
                          </div>
                          <div class="mb-3">
                               <label for="alamat" class="form-label">Alamat</label>
-                              <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
-                                   autocomplete="off"><?= $siswa['alamat']; ?></textarea>
+                              <textarea class="form-control w-50" id="alamat" name="alamat" rows="5"
+                                   autocomplete="off" required><?= $siswa['alamat']; ?></textarea>
                          </div>
-                         <hr>
-                         <a href="index.php" class="btn btn-secondary">Kembali</a>
-                         <button type="submit" class="btn btn-warning" name="ubah">Ubah</button>
+                         <div class="mb-3">
+                              <label for="gambar" class="form-label">Gambar</label>
+                              <input class="form-control form-control-sm w-50" id="gambar" name="gambar" type="file">
+                         </div>
+                         <div class="col-md">
+                              <button class="btn btn-primary" type="submit" name="ubah">Update</button>
+                         </div>
                     </form>
                </div>
           </div>
      </div>
      <!-- Close Container -->
 
-
-
-     <!-- Footer -->
-     <div class="container-fluid">
-          <div class="row bg-dark text-white text-center">
-               <div class="col my-2" id="politeknik gajah tunggal">
-                    <br><br><br>
-                    <h4 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h4>
-
-                    <p>
-                         Pembuat:
-                         1. Sindi Ayu Lestari (2302054)
-                         2. Wilson Sitompul (2302056)
-                         3. Haiqal Abimanyu Sutono (2302028)
-                    </p>
-               </div>
-          </div>
-     </div>
-     <!-- Close Footer -->
-
      <!-- Bootstrap -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+          integrity="sha384-KsvD5xa6lql6n/6uHEbPHEbKkz0FEIsvFwD9OOEepADe7Jy7iEXp4COmfLFlG4b5"
+          crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+          integrity="sha384-pzjw8f+ua7Kw1TIqK4a6B95e5g2QFI5g1R4D6dVo0nFD4LZ3N5VPlkKsF++lyqa" crossorigin="anonymous">
      </script>
-
-     <!-- animasi  gsap-->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"> </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
+     <!-- animasi Aos -->
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
      <script>
-     gsap.registerPlugin(TextPlugin);
-     gsap.to('.ubah_data', {
-          duration: 2,
-          delay: 1,
-          text: '<i class="bi bi-pencil-square"></i>Ubah Data Mahasiswa'
-     })
-     gsap.from('.navbar', {
-          duration: 1,
-          y: '-100%',
-          opacity: 0,
-          ease: 'bounce',
-     })
+          AOS.init();
      </script>
 </body>
 
