@@ -82,7 +82,7 @@ if (isset($_POST['ubah'])) {
      <div class="container">
           <div class="row my-2 text-light">
                <div class="col-md">
-                    <h3 class="fw-bold text-uppercase ubah_data"></h3>
+                    <h3 class="fw-bold text-uppercase ubah_data">Ubah Data Siswa</h3>
                </div>
                <hr>
           </div>
@@ -181,9 +181,11 @@ if (isset($_POST['ubah'])) {
                          <div class="mb-3">
                               <label for="gambar" class="form-label">Gambar</label>
                               <input class="form-control form-control-sm w-50" id="gambar" name="gambar" type="file">
+                              <img src="img/<?= $siswa['gambar']; ?>" alt="gambar" class="img-thumbnail mt-2 w-50">
                          </div>
                          <div class="col-md">
                               <button class="btn btn-primary" type="submit" name="ubah">Update</button>
+                              <a href="index.php" class="btn btn-secondary">Cancel</a>
                          </div>
                     </form>
                </div>

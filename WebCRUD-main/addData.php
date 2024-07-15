@@ -184,7 +184,11 @@ if (isset($_POST['simpan'])) {
                                    $start_year = 1995;
                                    $current_year = date("Y");
                                    for ($year = $start_year; $year <= $current_year; $year++) {
-                                       echo "<option value=\"$year\">$year</option>";
+                                       if ($year == $current_year) {
+                                           echo "<option value=\"$year\" selected>$year</option>";
+                                       } else {
+                                           echo "<option value=\"$year\">$year</option>";
+                                       }
                                    }
                                    ?>
                               </select>
