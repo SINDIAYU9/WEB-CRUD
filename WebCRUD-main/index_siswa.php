@@ -13,6 +13,9 @@ include "koneksi.php";
 // Mengambil informasi siswa yang sedang login berdasarkan nim dari session
 $nim = $_SESSION['nim'];
 $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
+
+// Ambil data semua mahasiswa
+$all_mahasiswa = query("SELECT * FROM siswa");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -214,6 +217,9 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
                         </tr>
                     </tbody>
                 </table>
+                <div class="text-center mt-3">
+                    <a href="download.php" class="btn btn-primary">Download Data Mahasiswa</a>
+                </div>
             </div>
         </div>
     </div>
