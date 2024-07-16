@@ -34,30 +34,63 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
 
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: url('img/bg/bck.png');
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #f0f2f5;
+            font-family: 'Righteous', cursive;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
         }
 
         .content {
-            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* Ensures the content takes up at least 80% of the viewport height */
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
         }
 
         .photo-container {
-            display: inline-block;
-            border: 2px solid #ffffff;
-            padding: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            background-color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .photo-container img {
             width: 150px;
             height: 200px;
             object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .info-table th, .info-table td {
+            padding: 10px;
+            text-align: left;
         }
 
         .footer {
@@ -65,11 +98,11 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
             color: #ffffff;
             text-align: center;
             padding: 20px 0;
-            margin-top: auto;
+            margin-top: 20px;
         }
 
-        .footer h4 {
-            margin-bottom: 20px;
+        .footer h5 {
+            margin-bottom: 10px;
         }
 
         .footer p {
@@ -100,47 +133,87 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
 
     <!-- Container -->
     <div class="container content mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card bg-dark text-white">
-                    <div class="card-header text-center">
-                        <h3 class="fw-bold text-uppercase">Profil Mahasiswa</h3>
-                    </div>
-                    <div class="card-body text-center">
-                        <?php
-                        // Tentukan jalur gambar default jika tidak ada gambar
-                        $default_image = "img/foto/default.png";
-                        $image_path = "img/" . htmlspecialchars($siswa['gambar']);
-                        // Jika file gambar tidak ada, gunakan gambar default
-                        if (!file_exists($image_path) || empty($siswa['gambar'])) {
-                            $image_path = $default_image;
-                        }
-                        ?>
-                        <div class="photo-container">
-                            <img src="<?= $image_path; ?>" alt="Foto Siswa">
-                        </div>
-                        <h4><?= htmlspecialchars($siswa['nama']); ?></h4>
-                        <p><?= htmlspecialchars($siswa['nim']); ?></p>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Jenis Kelamin:</strong> <?= htmlspecialchars($siswa['jekel']); ?></p>
-                            </div>
-                            <div class="col-md-6">
-                                <?php
-                                $now = time();
-                                $timeTahun = strtotime($siswa['tgl_Lahir']);
-                                $setahun = 31536000;
-                                $hitung = ($now - $timeTahun) / $setahun;
-                                ?>
-                                <p><strong>Umur:</strong> <?= floor($hitung); ?> Tahun</p>
-                            </div>
-                            <div class="col-md-12">
-                                <p><strong>Jurusan:</strong> <?= htmlspecialchars($siswa['jurusan']); ?></p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="fw-bold text-uppercase">Profil Mahasiswa</h3>
+            </div>
+            <div class="card-body">
+                <?php
+                // Tentukan jalur gambar default jika tidak ada gambar
+                $default_image = "img/foto/default.png";
+                $image_path = "img/" . htmlspecialchars($siswa['gambar']);
+                // Jika file gambar tidak ada, gunakan gambar default
+                if (!file_exists($image_path) || empty($siswa['gambar'])) {
+                    $image_path = $default_image;
+                }
+                ?>
+                <div class="photo-container">
+                    <img src="<?= $image_path; ?>" alt="Foto Siswa">
                 </div>
+                <h4 class="text-center"><?= htmlspecialchars($siswa['nama']); ?></h4>
+                <p class="text-center"><?= htmlspecialchars($siswa['nim']); ?></p>
+                <table class="table table-striped info-table">
+                    <tbody>
+                        <tr>
+                            <th>Tempat Lahir</th>
+                            <td><?= htmlspecialchars($siswa['tmpt_Lahir']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td><?= htmlspecialchars($siswa['tgl_Lahir']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td><?= htmlspecialchars($siswa['jekel']); ?></td>
+                        </tr>
+                        <tr>
+                            <?php
+                            $now = time();
+                            $timeTahun = strtotime($siswa['tgl_Lahir']);
+                            $setahun = 31536000;
+                            $hitung = ($now - $timeTahun) / $setahun;
+                            ?>
+                            <th>Umur</th>
+                            <td><?= floor($hitung); ?> Tahun</td>
+                        </tr>
+                        <tr>
+                            <th>Jurusan</th>
+                            <td><?= htmlspecialchars($siswa['jurusan']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><?= htmlspecialchars($siswa['email']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Telepon</th>
+                            <td><?= htmlspecialchars($siswa['telpon']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td><?= htmlspecialchars($siswa['alamat']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Ayah</th>
+                            <td><?= htmlspecialchars($siswa['ayah']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Ibu</th>
+                            <td><?= htmlspecialchars($siswa['ibu']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>NIK</th>
+                            <td><?= htmlspecialchars($siswa['nik']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Kelas</th>
+                            <td><?= htmlspecialchars($siswa['kelas']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tahun Masuk</th>
+                            <td><?= htmlspecialchars($siswa['tahun_masuk']); ?></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
