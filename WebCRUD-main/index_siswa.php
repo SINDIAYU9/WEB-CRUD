@@ -30,7 +30,7 @@ $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
     <!-- My CSS -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Home Siswa</title>
+    <title>Profil Mahasiswa</title>
 
     <style>
         body {
