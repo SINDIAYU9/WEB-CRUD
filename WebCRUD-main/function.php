@@ -20,9 +20,9 @@ function tambah($data)
     $nim = htmlspecialchars($data['nim']);
     $nama = htmlspecialchars($data['nama']);
     $tmpt_Lahir = htmlspecialchars($data['tmpt_Lahir']);
-    $tgl_Lahir = $data['tgl_Lahir'];
-    $jekel = $data['jekel'];
-    $jurusan = $data['jurusan'];
+    $tgl_Lahir = htmlspecialchars($data['tgl_Lahir']);
+    $jekel = htmlspecialchars($data['jekel']);
+    $jurusan = htmlspecialchars($data['jurusan']);
     $email = htmlspecialchars($data['email']);
     $gambar = upload();
     $alamat = htmlspecialchars($data['alamat']);
@@ -58,15 +58,15 @@ function hapus($nim)
 function ubah($data)
 {
     global $pdo;
-    $nim = $data['nim'];
+    $nim = htmlspecialchars($data['nim']);
     $nama = htmlspecialchars($data['nama']);
     $tmpt_Lahir = htmlspecialchars($data['tmpt_Lahir']);
-    $tgl_Lahir = $data['tgl_Lahir'];
-    $jekel = $data['jekel'];
-    $jurusan = $data['jurusan'];
+    $tgl_Lahir = htmlspecialchars($data['tgl_Lahir']);
+    $jekel = htmlspecialchars($data['jekel']);
+    $jurusan = htmlspecialchars($data['jurusan']);
     $email = htmlspecialchars($data['email']);
     $alamat = htmlspecialchars($data['alamat']);
-    $gambarLama = $data['gambarLama'];
+    $gambarLama = htmlspecialchars($data['gambarLama']);
     $telpon = htmlspecialchars($data['telpon']);
     $ayah = htmlspecialchars($data['ayah']);
     $ibu = htmlspecialchars($data['ibu']);
@@ -127,10 +127,11 @@ function upload()
 function registrasi($data)
 {
     global $pdo;
-    $username = strtolower(stripslashes($data["username"]));
+    $username = strtolower(trim($data["username"]));
     $password = $data["password"];
     $password2 = $data["password2"];
 
+    // Check if username already exists
     $stmt = $pdo->prepare("SELECT username FROM user WHERE username = ?");
     $stmt->execute([$username]);
 
@@ -139,12 +140,16 @@ function registrasi($data)
         return false;
     }
 
+    // Validate password
     if ($password !== $password2) {
         echo "<script>alert('Konfirmasi password tidak sesuai');</script>";
         return false;
     }
 
+    // Hash the password
     $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert new user
     $sql = "INSERT INTO user (username, password) VALUES (?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username, $password]);

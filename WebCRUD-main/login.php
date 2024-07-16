@@ -1,44 +1,43 @@
 <?php
 session_start();
-// Jika bisa login maka ke index.php
+
+// Jika sudah login, redirect ke index.php
 if (isset($_SESSION['login'])) {
     header('location:index.php');
     exit;
 }
 
-// Memanggil atau membutuhkan file function.php
 require 'function.php';
-require 'koneksi.php'; // Tambahkan ini untuk menyertakan koneksi ke database
+require 'koneksi.php'; // Menyertakan koneksi ke database
 
-// jika tombol yang bernama login diklik
+// Jika tombol login diklik
 if (isset($_POST['login'])) {
     $username = trim($_POST['username']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = trim($_POST['password']);
 
-
-    // mengambil data dari user dimana username yg diambil
+    // Ambil data user dari database berdasarkan username
     $stmt = $pdo->prepare("SELECT * FROM user WHERE username = :username");
     $stmt->execute(['username' => $username]);
     $row = $stmt->fetch();
-    $cek = $stmt->rowCount();
 
-    // jika $cek lebih dari 0, maka berhasil login dan masuk ke index.php
-    if ($cek > 0 && password_verify($password, $row['password'])) {
+    // Jika user ditemukan
+    if ($row && password_verify($password, $row['password'])) {
         $_SESSION['login'] = true;
 
-        // cek remember me
+        // Cek remember me
         if (isset($_POST['remember'])) {
-            // buat cookie dan acak cookie
-            setcookie('id', $row['id'], time() + 60);
-            // mengacak $row dengan algoritma 'sha256'
-            setcookie('key', hash('sha256', $row['username']), time() + 60);
+            // Buat cookie dan acak cookie
+            setcookie('id', $row['id'], time() + 86400, "/"); // Cookie expires in 1 day
+            // Mengacak username dengan algoritma 'sha256'
+            setcookie('key', hash('sha256', $row['username']), time() + 86400, "/"); // Cookie expires in 1 day
         }
 
         header('location:index.php');
         exit;
+    } else {
+        // Jika login gagal
+        $error = 'Username atau Password Salah!';
     }
-    // jika $cek adalah 0 maka tampilkan error
-    $error = true;
 }
 ?>
 
@@ -57,8 +56,12 @@ if (isset($_POST['login'])) {
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <!-- My CSS -->
     <link rel="stylesheet" href="css/login.css">
-
     <title>Form Login</title>
+    <script>
+        <?php if (isset($error)) : ?>
+        alert('<?php echo htmlspecialchars($error); ?>');
+        <?php endif; ?>
+    </script>
 </head>
 
 <body background="img/bg/bck.png">
@@ -67,17 +70,13 @@ if (isset($_POST['login'])) {
         <div class="row my-5">
             <div class="col-md-6 text-center login bg-dark">
                 <h4 class="fw-bold" style="color: white;">Login Admin</h4>
-                <!-- Ini Error jika tidak bisa login -->
-                <?php if (isset($error)) : ?>
-                <?php echo '<script>alert("Username atau Password Salah!");</script>'; ?>
-                <?php endif; ?>
                 <form action="" method="post">
                     <div class="form-group user">
-                        <input type="text" class="form-control w-50" placeholder="Masukkan Username"
+                        <input type="text" class="form-control w-50 mx-auto" placeholder="Masukkan Username"
                                name="username" autocomplete="off" required>
                     </div>
                     <div class="form-group my-5">
-                        <input type="password" class="form-control w-50" placeholder="Masukkan Password"
+                        <input type="password" class="form-control w-50 mx-auto" placeholder="Masukkan Password"
                                name="password" autocomplete="off" required>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
