@@ -133,7 +133,7 @@ if (isset($_POST['ubah'])) {
                                    <option value="Teknik Mesin" <?php if ($siswa['jurusan'] == 'Teknik Mesin') { ?>
                                         selected='' <?php } ?>>Teknik Mesin</option>
                                    <option value="Teknik Elektronika" <?php if ($siswa['jurusan'] == 'Teknik Elektronika') { ?>
-                                        selected='' <?php } ?>>Teknink Elektronika</option>
+                                        selected='' <?php } ?>>Teknik Elektronika</option>
                                    <option value="Teknik Industri" <?php if ($siswa['jurusan'] == 'Teknologi Industri') { ?> selected=''
                                         <?php } ?>>Teknologi Industri</option>
                               </select>
@@ -188,6 +188,9 @@ if (isset($_POST['ubah'])) {
                          <a href="index.php" class="btn btn-secondary">Cancel</a>    
                          <button class="btn btn-primary" type="submit" name="ubah">Update</button>
                          </div>
+
+
+
                     </form>
                </div>
           </div>
