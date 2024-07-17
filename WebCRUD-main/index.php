@@ -1,10 +1,15 @@
 <?php
 session_start();
-// Jika tidak bisa login maka balik ke login.php
-// jika masuk ke halaman ini melalui url, maka langsung menuju halaman login
-if (!isset($_SESSION['login'])) {
-    header('location:login.php');
-    exit;
+
+// Memeriksa apakah pengguna telah login
+if (empty($_SESSION['login'])) {
+    // Mengirimkan header HTTP untuk redirect
+    header('Content-Type: text/html; charset=utf-8');
+    echo "<script>
+        alert('Anda harus login terlebih dahulu!');
+        window.location.href = 'login.php';
+    </script>";
+    exit();
 }
 
 // Memanggil atau membutuhkan file function.php

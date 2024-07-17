@@ -1,5 +1,18 @@
 <?php
 
+// Memeriksa apakah pengguna telah login
+if (empty($_SESSION['login'])) {
+     // Mengirimkan header HTTP untuk redirect
+     header('Content-Type: text/html; charset=utf-8');
+     echo "<script>
+         alert('Anda harus login terlebih dahulu!');
+         window.location.href = 'login.php';
+     </script>";
+     exit();
+ }
+
+
+
 require 'function.php';
 
 if (isset($_POST["register"])) {
