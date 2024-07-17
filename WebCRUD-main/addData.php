@@ -91,181 +91,208 @@ if (isset($_POST['simpan'])) {
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <!-- Bootstrap -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-     <!-- Bootstrap Icons -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-     <!-- Font Google -->
-     <link rel="preconnect" href="https://fonts.gstatic.com">
-     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-     <!-- animasi Css Aos -->
-     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-     <!-- My CSS -->
-     <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!-- animasi Css Aos -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-     <title>Tambah Data</title>
+    <title>Tambah Data</title>
 </head>
 
 <body background="img/bg/bck.png">
-     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
-          <div class="container">
-               <a class="navbar-brand" href="index.php">Sistem Admin Data Mahasiswa</a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">Sistem Admin Data Mahasiswa</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                         <li class="nav-item">
-                              <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link" href="logout.php">Logout</a>
-                         </li>
-                    </ul>
-               </div>
-          </div>
-     </nav>
-     <!-- Close Navbar -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Navbar -->
 
-     <!-- Container -->
-     <div class="container">
-          <div class="row my-2">
-               <div class="col-md text-light">
-                    <h3 class="fw-bold text-uppercase">Tambah Data</h3>
-               </div>
-               <hr>
-          </div>
-          <div class="row my-2 text-light">
-               <div class="col-md">
-                    <form action="" method="post" enctype="multipart/form-data">
-                         <div class="mb-3">
-                              <label for="nim" class="form-label">NIM</label>
-                              <input type="number" class="form-control w-50" id="nim" placeholder="Masukkan NIM" min="1"
-                                   name="nim" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="nama" class="form-label">Nama</label>
-                              <input type="text" class="form-control form-control-md w-50" id="nama"
-                                   placeholder="Masukkan Nama" name="nama" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="tmpt_Lahir" class="form-label">Tempat Lahir</label>
-                              <input type="text" class="form-control w-50" id="tmpt_Lahir"
-                                   placeholder="Masukkan Tempat Lahir" name="tmpt_Lahir" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="tgl_Lahir" class="form-label">Tanggal Lahir</label>
-                              <input type="date" class="form-control w-50" id="tgl_Lahir" name="tgl_Lahir"
-                                   autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="jekel" class="form-label">Jenis Kelamin</label>
-                              <label>Jenis Kelamin</label>
-                              <div class="form-check">
-                                   <input class="form-check-input" type="radio" name="jekel" id="Laki - Laki"
-                                        value="Laki - Laki">
-                                   <label class="form-check-label" for="Laki - Laki">Laki - Laki</label>
-                              </div>
-                              <div class="form-check">
-                                   <input class="form-check-input" type="radio" name="jekel" id="Perempuan"
-                                        value="Perempuan">
-                                   <label class="form-check-label" for="Perempuan">Perempuan</label>
-                              </div>
-                         </div>
-                         <div class="mb-3">
-                              <label for="jurusan" class="form-label">Jurusan</label>
-                              <select class="form-select w-50" id="jurusan" name="jurusan" required>
-                              <option disabled selected value>--------------------------------------------Pilih
-                              Jurusan--------------------------------------------</option>
-                                   <option value="Teknik Mesin">Teknik Mesin</option>
-                                   <option value="Teknik Elektronika">Teknik Elektronika</option>
-                                   <option value="Teknologi Industri">Teknologi Industri</option>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="email" class="form-label">Email</label>
-                              <input type="email" class="form-control w-50" id="email" placeholder="Masukkan Email"
-                                   name="email" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="telpon" class="form-label">Nomor Telepon</label>
-                              <input type="tel" class="form-control w-50" id="telpon"
-                                   placeholder="Masukkan Nomor Telepon" name="telpon" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="ayah" class="form-label">Nama Ayah</label>
-                              <input type="text" class="form-control w-50" id="ayah" placeholder="Masukkan Nama Ayah"
-                                   name="ayah" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="ibu" class="form-label">Nama Ibu</label>
-                              <input type="text" class="form-control w-50" id="ibu" placeholder="Masukkan Nama Ibu"
-                                   name="ibu" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="nik" class="form-label">NIK</label>
-                              <input type="number" class="form-control w-50" id="nik" placeholder="Masukkan NIK" min="1"
-                                   name="nik" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="kelas" class="form-label">Kelas</label>
-                              <input type="text" class="form-control w-50" id="kelas" placeholder="Masukkan Kelas"
-                                   name="kelas" autocomplete="off" required>
-                         </div>
-                         <div class="mb-3">
-                              <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
-                              <select class="form-select w-50" id="tahun_masuk" name="tahun_masuk" required>
-                                   <?php
-                                   $start_year = 1995;
-                                   $current_year = date("Y");
-                                   for ($year = $start_year; $year <= $current_year; $year++) {
-                                       if ($year == $current_year) {
-                                           echo "<option value=\"$year\" selected>$year</option>";
-                                       } else {
-                                           echo "<option value=\"$year\">$year</option>";
-                                       }
-                                   }
-                                   ?>
-                              </select>
-                         </div>
-                         <div class="mb-3">
-                              <label for="gambar" class="form-label">Foto Siswa</label>
-                              <input class="form-control w-50" type="file" id="gambar" name="gambar">
-                         </div>
-                         <div class="mb-3">
-                              <label for="alamat" class="form-label">Alamat</label>
-                              <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
-                                   placeholder="Masukkan Alamat" autocomplete="off" required></textarea>
-                         </div>
-                         <a href="index.php" class="btn btn-danger">Kembali</a>
-                         <button type="submit" name="simpan" class="btn btn-primary">Simpan Data</button>
-                    </form>
-               </div>
-          </div>
-     </div>
-     <!-- Close Container -->
+    <!-- Container -->
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-md text-light">
+                <h3 class="fw-bold text-uppercase">Tambah Data</h3>
+            </div>
+            <hr>
+        </div>
+        <div class="row my-2 text-light">
+            <div class="col-md">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nim" class="form-label">NIM</label>
+                        <input type="number" class="form-control w-50" id="nim" placeholder="Masukkan NIM" min="1"
+                               name="nim" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control form-control-md w-50" id="nama"
+                               placeholder="Masukkan Nama" name="nama" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tmpt_Lahir" class="form-label">Tempat Lahir</label>
+                        <input type="text" class="form-control w-50" id="tmpt_Lahir"
+                               placeholder="Masukkan Tempat Lahir" name="tmpt_Lahir" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl_Lahir" class="form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control w-50" id="tgl_Lahir" name="tgl_Lahir"
+                               autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jekel" class="form-label">Jenis Kelamin</label>
+                        <label>Jenis Kelamin</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jekel" id="Laki - Laki"
+                                   value="Laki - Laki">
+                            <label class="form-check-label" for="Laki - Laki">Laki - Laki</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jekel" id="Perempuan"
+                                   value="Perempuan">
+                            <label class="form-check-label" for="Perempuan">Perempuan</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jurusan" class="form-label">Jurusan</label>
+                        <select class="form-select w-50" id="jurusan" name="jurusan" required>
+                            <option disabled selected value>--------------------------------------------Pilih
+                            Jurusan--------------------------------------------</option>
+                            <option value="Teknik Mesin">Teknik Mesin</option>
+                            <option value="Teknik Elektronika">Teknik Elektronika</option>
+                            <option value="Teknologi Industri">Teknologi Industri</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kelas" class="form-label">Kelas</label>
+                        <select class="form-select w-50" id="kelas" name="kelas" required>
+                            <option disabled selected value>--------------------------------------------Pilih
+                            Kelas--------------------------------------------</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control w-50" id="email" placeholder="Masukkan Email"
+                               name="email" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telpon" class="form-label">Nomor Telepon</label>
+                        <input type="tel" class="form-control w-50" id="telpon"
+                               placeholder="Masukkan Nomor Telepon" name="telpon" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ayah" class="form-label">Nama Ayah</label>
+                        <input type="text" class="form-control w-50" id="ayah" placeholder="Masukkan Nama Ayah"
+                               name="ayah" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ibu" class="form-label">Nama Ibu</label>
+                        <input type="text" class="form-control w-50" id="ibu" placeholder="Masukkan Nama Ibu"
+                               name="ibu" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nik" class="form-label">NIK</label>
+                        <input type="number" class="form-control w-50" id="nik" placeholder="Masukkan NIK" min="1"
+                               name="nik" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
+                        <select class="form-select w-50" id="tahun_masuk" name="tahun_masuk" required>
+                            <?php
+                            $start_year = 1995;
+                            $current_year = date("Y");
+                            for ($year = $start_year; $year <= $current_year; $year++) {
+                                if ($year == $current_year) {
+                                    echo "<option value=\"$year\" selected>$year</option>";
+                                } else {
+                                    echo "<option value=\"$year\">$year</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Foto Siswa</label>
+                        <input class="form-control w-50" type="file" id="gambar" name="gambar">
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <textarea class="form-control w-50" id="alamat" rows="5" name="alamat"
+                                  placeholder="Masukkan Alamat" autocomplete="off" required></textarea>
+                    </div>
+                    <a href="index.php" class="btn btn-danger">Kembali</a>
+                    <button type="submit" name="simpan" class="btn btn-primary">Simpan Data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Close Container -->
 
-     <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Optional JavaScript; choose one of the two! -->
 
-     <!-- Option 1: Bootstrap Bundle with Popper -->
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
-          integrity="sha384-KsvtA1q0gDKWPTnD5ZHblGJJK5jyl16gXQq4DyD0f5rxUjIjyyHqZV8zjo0BXihp" crossorigin="anonymous">
-     </script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
-          integrity="sha384-pzjw8f+ua7Kw1TIqU88mLKh8GJuxX2cQI5L+EqQlXQnK0ybgvnP+0bW0R4yJG8Si" crossorigin="anonymous">
-     </script>
-     <!-- animasi Js Aos -->
-     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-     <script>
-          AOS.init();
-     </script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+            integrity="sha384-KsvtA1q0gDKWPTnD5ZHblGJJK5jyl16gXQq4DyD0f5rxUjIjyyHqZV8zjo0BXihp" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+            integrity="sha384-pzjw8f+ua7Kw1TIqU88mLKh8GJuxX2cQI5L+EqQlXQnK0ybgvnP+0bW0R4yJG8Si" crossorigin="anonymous">
+    </script>
+    <!-- animasi Js Aos -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        document.getElementById('jurusan').addEventListener('change', function() {
+            const jurusan = this.value;
+            const kelasSelect = document.getElementById('kelas');
+            
+            // Clear existing options
+            kelasSelect.innerHTML = '<option disabled selected value>--------------------------------------------Pilih Kelas--------------------------------------------</option>';
+            
+            // Add new options based on the selected jurusan
+            let kelasOptions = [];
+            if (jurusan === 'Teknik Mesin') {
+                kelasOptions = ['1 Teknik Mesin', '2 Teknik Mesin', '3 Teknik Mesin'];
+            } else if (jurusan === 'Teknik Elektronika') {
+                kelasOptions = ['1 Teknik Elektronika', '2 Teknik Elektronika', '3 Teknik Elektronika'];
+            } else if (jurusan === 'Teknologi Industri') {
+                kelasOptions = ['1 Teknologi Industri', '2 Teknologi Industri', '3 Teknologi Industri'];
+            }
+
+            kelasOptions.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                kelasSelect.appendChild(optionElement);
+            });
+        });
+    </script>
 </body>
 
 </html>
