@@ -17,7 +17,10 @@ include "koneksi.php";
 // Cek apakah tombol simpan sudah ditekan
 if (isset($_POST['simpan'])) {
     $nim = $_POST['nim'];
-    
+    $email = $_POST['email'];
+    $nik = $_POST['nik'];
+    $nama = $_POST['nama'];
+
     // Cek apakah NIM sudah ada di database
     $query = "SELECT * FROM siswa WHERE nim = ?";
     $stmt = $pdo->prepare($query);
@@ -30,16 +33,55 @@ if (isset($_POST['simpan'])) {
                 alert('NIM telah digunakan!');
             </script>";
     } else {
-        // Jika NIM belum ada, tambahkan data baru
-        if (tambah($_POST) > 0) {
+        // Cek apakah email sudah ada di database
+        $query = "SELECT * FROM siswa WHERE email = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$email]);
+        $emailExists = $stmt->fetch();
+
+        if ($emailExists) {
+            // Jika email sudah ada
             echo "<script>
-                    alert('Data siswa berhasil ditambahkan!');
-                    document.location.href = 'index.php';
+                    alert('Email telah digunakan!');
                 </script>";
         } else {
-            echo "<script>
-                    alert('Data siswa gagal ditambahkan!');
-                </script>";
+            // Cek apakah NIK sudah ada di database
+            $query = "SELECT * FROM siswa WHERE nik = ?";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([$nik]);
+            $nikExists = $stmt->fetch();
+
+            if ($nikExists) {
+                // Jika NIK sudah ada
+                echo "<script>
+                        alert('NIK telah digunakan!');
+                    </script>";
+            } else {
+                // Cek apakah nama sudah ada di database
+                $query = "SELECT * FROM siswa WHERE nama = ?";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$nama]);
+                $namaExists = $stmt->fetch();
+
+                if ($namaExists) {
+                    // Jika nama sudah ada
+                    echo "<script>
+                            alert('Nama telah digunakan!');
+                        </script>";
+                } else {
+                    // Jika NIM, email, NIK, dan nama belum ada, tambahkan data baru
+                    if (tambah($_POST) > 0) {
+                        echo "<script>
+                                alert('Data siswa berhasil ditambahkan!');
+                                document.location.href = 'index.php';
+                            </script>";
+                    } else {
+                        echo "<script>
+                                alert('Data siswa gagal ditambahkan!');
+                            </script>";
+                    }
+                }
+            }
         }
     }
 }
