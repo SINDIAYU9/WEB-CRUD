@@ -174,7 +174,7 @@ $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
 
     <!-- Footer -->
     <div class="footer">
-        <h5 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h5>
+        <h6 class="fw-bold text-uppercase">POLITEKNIK GAJAH TUNGGAL</h6>
         <p>
             1. Sindi Ayu Lestari (2302054)
             2. Wilson Sitompul (2302056)
