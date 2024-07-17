@@ -57,9 +57,9 @@ if (isset($_POST["register"])) {
                                    autocomplete="off" required>
                          </div>
                          <button class="btn btn-info btn-sm text-uppercase text-light" style="font-weight: 600;"
-                              type="submit" name="register">REGISTER</button> |
-                         <a href="login.php" class="btn btn-info btn-sm text-light" style="font-weight: 600;"><i
-                                   class="bi bi-pencil-square"></i>LOGIN</a> |
+                              type="submit" name="register">REGISTER</button>
+                         <a href="index.php" class="btn btn-secondary btn-sm text-uppercase text-light"
+                              style="font-weight: 600;">CANCEL</a>
                     </form>
                </div>
           </div>

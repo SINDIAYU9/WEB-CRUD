@@ -103,6 +103,8 @@ $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
             <div class="col-md">
                 <a href="addData.php" class="btn btn-primary" data-aos="fade-right" data-aos-duration="800"
                     data-aos-delay="1200"><i class="bi bi-person-plus-fill"></i>Tambah Data</a>
+                <a href="registrasi.php" class="btn btn-success ms-1" data-aos="fade-left" data-aos-duration="1000"
+                    data-aos-delay="1600"><i class="bi bi-pencil-square"></i>Tambah Admin</a>
                 <a href="export.php" target="_blank" class="btn btn-success ms-1" data-aos="fade-left"
                     data-aos-duration="1000" data-aos-delay="1600"><i
                         class="bi bi-file-earmark-spreadsheet-fill"></i>Ekspor ke Excel</a>

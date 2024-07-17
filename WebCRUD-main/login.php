@@ -84,8 +84,6 @@ if (isset($_POST['login'])) {
                         <label class="btn btn-outline-primary" for="remember">Remember Me</label>
                     </div>
                     <button class="btn btn-primary text-uppercase" type="submit" name="login">Login</button>
-                    <a href="registrasi.php" class="btn btn-danger text-uppercase"><i
-                               class="bi bi-pencil-square"></i>SIGN UP</a> |
                     <a href="login_siswa.php" class="btn btn-warning text-uppercase">Login Siswa</a>
                 </form>
             </div>
