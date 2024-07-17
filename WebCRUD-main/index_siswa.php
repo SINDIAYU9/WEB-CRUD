@@ -1,25 +1,5 @@
-<?php
-session_start();
-// Jika tidak bisa login maka balik ke login_siswa.php
-if (!isset($_SESSION['siswa_login']) || !isset($_SESSION['nim'])) {
-    header('location:login_siswa.php');
-    exit;
-}
-
-// Memanggil atau membutuhkan file function.php
-require 'function.php';
-include "koneksi.php";
-
-// Mengambil informasi siswa yang sedang login berdasarkan nim dari session
-$nim = htmlspecialchars($_SESSION['nim']);
-$siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
-
-// Ambil data semua mahasiswa
-$all_mahasiswa = query("SELECT * FROM siswa");
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -113,7 +93,6 @@ $all_mahasiswa = query("SELECT * FROM siswa");
         }
     </style>
 </head>
-
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
@@ -142,6 +121,21 @@ $all_mahasiswa = query("SELECT * FROM siswa");
             </div>
             <div class="card-body">
                 <?php
+                session_start();
+                // Jika tidak bisa login maka balik ke login_siswa.php
+                if (!isset($_SESSION['siswa_login']) || !isset($_SESSION['nim'])) {
+                    header('location:login_siswa.php');
+                    exit;
+                }
+
+                // Memanggil atau membutuhkan file function.php
+                require 'function.php';
+                include "koneksi.php";
+
+                // Mengambil informasi siswa yang sedang login berdasarkan nim dari session
+                $nim = htmlspecialchars($_SESSION['nim']);
+                $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
+
                 // Tentukan jalur gambar default jika tidak ada gambar
                 $default_image = "img/foto/default.png";
                 $image_path = "img/" . htmlspecialchars($siswa['gambar']);
@@ -242,5 +236,4 @@ $all_mahasiswa = query("SELECT * FROM siswa");
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
 </body>
-
 </html>

@@ -11,45 +11,61 @@ require 'function.php';
 include "koneksi.php";
 
 // Ambil data semua mahasiswa
-$all_mahasiswa = query("SELECT * FROM siswa");
+$all_mahasiswa = query("SELECT * FROM siswa ORDER BY nim DESC");
 
-// Header file CSV
-header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename=data_mahasiswa.csv');
+// Membuat nama file
+$filename = "data_siswa-" . date('Ymd') . ".xls";
 
-// Buat file pointer
-$output = fopen('php://output', 'w');
+// Set header untuk download file Excel
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=$filename");
 
-// Header kolom
-fputcsv($output, array('NIM', 'Nama', 'Tempat Lahir', 'Tanggal Lahir', 'Jenis Kelamin', 'Umur', 'Jurusan', 'Email', 'Telepon', 'Alamat', 'Nama Ayah', 'Nama Ibu', 'NIK', 'Kelas', 'Tahun Masuk'));
-
-// Ambil data setiap mahasiswa
-foreach ($all_mahasiswa as $mahasiswa) {
-    $now = time();
-    $timeTahun = strtotime($mahasiswa['tgl_Lahir']);
-    $setahun = 31536000;
-    $umur = floor(($now - $timeTahun) / $setahun);
-
-    fputcsv($output, array(
-        $mahasiswa['nim'],
-        $mahasiswa['nama'],
-        $mahasiswa['tmpt_Lahir'],
-        $mahasiswa['tgl_Lahir'],
-        $mahasiswa['jekel'],
-        $umur,
-        $mahasiswa['jurusan'],
-        $mahasiswa['email'],
-        $mahasiswa['telpon'],
-        $mahasiswa['alamat'],
-        $mahasiswa['ayah'],
-        $mahasiswa['ibu'],
-        $mahasiswa['nik'],
-        $mahasiswa['kelas'],
-        $mahasiswa['tahun_masuk']
-    ));
-}
-
-// Tutup file pointer
-fclose($output);
-exit;
 ?>
+<table class="text-center" border="1">
+    <thead class="text-center">
+        <tr>
+            <th>No.</th>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Tempat dan Tanggal Lahir</th>
+            <th>Umur</th>
+            <th>Jenis Kelamin</th>
+            <th>Jurusan</th>
+            <th>E-Mail</th>
+            <th>Alamat</th>
+            <th>Nama Ayah</th>
+            <th>Nama Ibu</th>
+            <th style="width: 150px;">NIK</th> <!-- Mengatur lebar kolom NIK -->
+            <th>Kelas</th>
+            <th>Tahun Masuk</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <?php $no = 1; ?>
+        <?php foreach ($all_mahasiswa as $row) : ?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $row['nim']; ?></td>
+                <td><?= $row['nama']; ?></td>
+                <td><?= $row['tmpt_Lahir']; ?>, <?= $row['tgl_Lahir']; ?></td>
+                <?php
+                $now = time();
+                $timeTahun = strtotime($row['tgl_Lahir']);
+                $setahun = 31536000;
+                $hitung = ($now - $timeTahun) / $setahun;
+                ?>
+                <td><?= floor($hitung); ?> Tahun</td>
+                <td><?= $row['jekel']; ?></td>
+                <td><?= $row['jurusan']; ?></td>
+                <td><?= $row['email']; ?></td>
+                <td><?= $row['alamat']; ?></td>
+                <td><?= $row['ayah']; ?></td>
+                <td><?= $row['ibu']; ?></td>
+                <!-- Menggunakan sprintf untuk memastikan NIK ditampilkan sebagai teks dan mengatur lebar kolom -->
+                <td style="width: 150px;"><?= sprintf('="%s"', $row['nik']); ?></td>
+                <td><?= $row['kelas']; ?></td>
+                <td><?= $row['tahun_masuk']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
