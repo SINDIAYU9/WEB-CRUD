@@ -14,6 +14,7 @@ if (empty($_SESSION['login'])) {
 
 // Memanggil atau membutuhkan file function.php
 require 'function.php';
+include "koneksi.php";
 
 // Menampilkan semua data dari table siswa berdasarkan nim secara Descending
 $siswa = query("SELECT * FROM siswa ORDER BY nim DESC");
