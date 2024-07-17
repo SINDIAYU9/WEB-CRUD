@@ -16,6 +16,7 @@ body {
     border: 0;
     height: 500px;
     margin: auto;
+    border-radius: 10px;
 }
 
 .login h4 {

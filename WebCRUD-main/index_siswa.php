@@ -11,7 +11,7 @@ require 'function.php';
 include "koneksi.php";
 
 // Mengambil informasi siswa yang sedang login berdasarkan nim dari session
-$nim = $_SESSION['nim'];
+$nim = htmlspecialchars($_SESSION['nim']);
 $siswa = query("SELECT * FROM siswa WHERE nim = '$nim'")[0];
 
 // Ambil data semua mahasiswa
@@ -38,7 +38,7 @@ $all_mahasiswa = query("SELECT * FROM siswa");
     <style>
         body {
             background-color: #f0f2f5;
-            font-family: 'Righteous', cursive;
+            font-family: 'Gill Sans MT', cursive;
         }
 
         .navbar {
